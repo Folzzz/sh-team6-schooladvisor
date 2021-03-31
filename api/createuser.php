@@ -7,8 +7,8 @@
     header('Access-Control-Allow-Headers: Access-Control-Allow-Headers, Content-Type, Access-Control-Allow-Methods, Authorization, X-Requested- With');
 
     //import db conn and users model
-    include_once 'config/db_conn.php';
-    include_once 'model/User.php';
+    include_once '../config/db_conn.php';
+    include_once '../model/User.php';
 
     //instantiate database and post object
     $database = new Database();
