@@ -20,7 +20,8 @@
     //get posted data
     $data = json_decode(file_get_contents("php://input"));
 
-    $user->full_name = $data->full_name;
+    $user->firstname = $data->firstname;
+    $user->lastname = $data->lastname;
     $user->username = $data->username;
     $user->email = $data->email;
     $user->password = $data->password;
