@@ -10,7 +10,7 @@
     include_once 'config/db_conn.php';
     include_once 'model/User.php';
 
-    //instantiate database and post object
+    //instantiate database and user object
     $database = new Database();
     //connection variable
     $db = $database->connect();

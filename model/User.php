@@ -52,5 +52,19 @@
             printf("ERROR: %s.\n", $stmt->error);
             return false;
         }
+
+        // read / view users
+        public function read() {
+            // create query
+            $query = 'SELECT * FROM ' . $this->table . ' ORDER BY register_date ASC';
+
+            // create prepare statement
+            $stmt = $this->conn->prepare($query);
+
+            //execute statement
+            $stmt->execute();
+
+            return $stmt;
+        }
     }
 ?>
