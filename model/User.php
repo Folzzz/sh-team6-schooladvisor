@@ -20,6 +20,17 @@
         //insert new user
         public function create(){
             //query(named parameter)
+            // $query = 'INSERT INTO '. $this->table .' 
+            //     SET 
+            //     fullname = :fullname, 
+            //     username = :username, 
+            //     email = :email, 
+            //     password = :password
+            // ';
+            if(empty($fullname) && empty($username) && empty($email) && empty($password)) {
+                die('Could not get data: ' . mysql_error());
+            };
+
             $query = 'INSERT INTO '. $this->table .' 
                 SET 
                 fullname = :fullname, 
