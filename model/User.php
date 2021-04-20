@@ -46,7 +46,7 @@
             $this->fullname = htmlspecialchars(strip_tags($this->fullname));
             $this->username = htmlspecialchars(strip_tags($this->username));
             $this->email = htmlspecialchars(strip_tags($this->email));
-            $this->password = htmlspecialchars(strip_tags($this->password));
+            $this->password = md5($this->password); //password security
 
             //bind data
             $stmt->bindParam(':fullname', $this->fullname);
