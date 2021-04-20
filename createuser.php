@@ -19,12 +19,19 @@
 
     //get posted data
     $data = json_decode(file_get_contents("php://input"));
-
-    $user->fullname = $data->fullname;
-    $user->username = $data->username;
-    $user->email = $data->email;
-    $user->password = $data->password;
-
+    if(empty($data->fullname) || empty($data->username) || empty($data->email) || empty($data->password)) {
+        die('Could not save data: some fields are empty');
+    }
+    else {
+        $user->fullname = $data->fullname;
+        $user->username = $data->username;
+        $user->email = $data->email;
+        $user->password = $data->password;
+    }
+        // $user->fullname = $data->fullname;
+        // $user->username = $data->username;
+        // $user->email = $data->email;
+        // $user->password = $data->password;
     //create new user
     if ($user->create()){
         echo json_encode(
