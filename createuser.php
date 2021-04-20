@@ -21,6 +21,8 @@
     $data = json_decode(file_get_contents("php://input"));
     if(empty($data->fullname) || empty($data->username) || empty($data->email) || empty($data->password)) {
         die('Could not save data: some fields are empty');
+    } else if (!filter_var($data->email, FILTER_VALIDATE_EMAIL)) {
+        die('Could not save data: wrong email format');
     }
     else {
         $user->fullname = $data->fullname;
