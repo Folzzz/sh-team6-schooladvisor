@@ -6,8 +6,7 @@
 
         //set users properties
         public $id;
-        public $firstname;
-        public $lastname;
+        public $fullname;
         public $username;
         public $email;
         public $password;
@@ -23,8 +22,7 @@
             //query(named parameter)
             $query = 'INSERT INTO '. $this->table .' 
                 SET 
-                firstname = :firstname, 
-                lastname = :lastname, 
+                fullname = :fullname, 
                 username = :username, 
                 email = :email, 
                 password = :password
@@ -34,15 +32,13 @@
             $stmt = $this->conn->prepare($query);
 
             //clean data up
-            $this->firstname = htmlspecialchars(strip_tags($this->firstname));
-            $this->lastname = htmlspecialchars(strip_tags($this->lastname));
+            $this->fullname = htmlspecialchars(strip_tags($this->fullname));
             $this->username = htmlspecialchars(strip_tags($this->username));
             $this->email = htmlspecialchars(strip_tags($this->email));
             $this->password = htmlspecialchars(strip_tags($this->password));
 
             //bind data
-            $stmt->bindParam(':firstname', $this->firstname);
-            $stmt->bindParam(':lastname', $this->lastname);
+            $stmt->bindParam(':fullname', $this->fullname);
             $stmt->bindParam(':username', $this->username);
             $stmt->bindParam(':email', $this->email);
             $stmt->bindParam(':password', $this->password);

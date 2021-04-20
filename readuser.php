@@ -32,8 +32,7 @@
             // item for each user
             $user_item = array(
                 'id' => $id,
-                'firstname' => $firstname,
-                'lastname' => $lastname,
+                'fullname' => $fullname,
                 'username' => $username,
                 'email' => $email,
                 'password' => $password,
