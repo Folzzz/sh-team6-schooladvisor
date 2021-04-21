@@ -27,6 +27,10 @@
                 email = :email, 
                 password = :password
             ';
+
+            // query for username ane email validation
+            $query_username = 'SELECT username FROM '. $this->table .' WHERE username = :username';
+            $query_email = 'SELECT email FROM '. $this->table .' WHERE email = :email';
             // if(empty($fullname) && empty($username) && empty($email) && empty($password)) {
             //     die('Could not get data: ' . mysql_error());
             // };
@@ -41,6 +45,8 @@
 
             //prepare statement
             $stmt = $this->conn->prepare($query);
+            $chk_username = $this->conn->prepare($query_username);
+            $chk_email = $this->conn->prepare($query_email);
 
             //clean data up
             $this->fullname = htmlspecialchars(strip_tags($this->fullname));
@@ -53,8 +59,20 @@
             $stmt->bindParam(':username', $this->username);
             $stmt->bindParam(':email', $this->email);
             $stmt->bindParam(':password', $this->password);
+            //bind data for checking
+            $chk_username->bindParam(':username', $this->username);
+            $chk_email->bindParam(':email', $this->email);
 
             //execute query
+            $chk_username->execute();
+            $chk_email->execute();
+
+            if($chk_username->rowCount() > 0) {
+                die('Could not save data: username already exist');
+            } else if ($chk_email->rowCount() > 0) {
+                die('Could not save data: email already exist');
+            }
+
             if($stmt->execute()) {
                 return true;
             }
